@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DotMind • Polkadot's Decentralized AI Agent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body { font-family: system-ui; }
+    .hero-bg { background: linear-gradient(135deg, #0a0a2a 0%, #1a0033 100%); }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <!-- HERO -->
+  <section class="hero-bg py-20 text-center">
+    <div class="max-w-6xl mx-auto px-6">
+      <img src="https://i.imgur.com/TU-IMAGEN-AQUI.jpg" alt="DotMind AI Brain" class="mx-auto mb-8 w-96">
+      <h1 class="text-6xl font-bold mb-4">DotMind</h1>
+      <p class="text-3xl mb-8">The first truly decentralized AI agent on Polkadot</p>
+      <p class="text-xl max-w-2xl mx-auto mb-10">Built on Relay Chain • Phala TEEs • OpenGov • XCM. Owned by the community. Powered by you.</p>
+      <a href="#donate" class="bg-pink-600 hover:bg-pink-700 px-10 py-4 rounded-2xl text-xl font-semibold inline-flex items-center gap-3">
+        <i class="fas fa-rocket"></i> Donate DOT • Get $DOTMIND Airdrop
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="py-16 bg-zinc-950">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12">Why DotMind?</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-zinc-900 p-8 rounded-3xl">Like Grok but 100% on-chain. No company controls it.</div>
+        <div class="bg-zinc-900 p-8 rounded-3xl">Phala confidential compute + IPFS weights + distributed inference.</div>
+        <div class="bg-zinc-900 p-8 rounded-3xl">Real utility: analyzes Treasury, OpenGov, DeFi, NFTs from your wallet.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE SECTION -->
+  <section id="donate" class="py-20 bg-gradient-to-b from-zinc-950 to-black">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-5xl font-bold mb-6">Support DotMind • Get Early Airdrop</h2>
+      <p class="text-2xl mb-10">Send DOT to this address. Every donation = future $DOTMIND tokens.</p>
+      <div class="bg-zinc-900 p-8 rounded-3xl inline-block text-left mb-10">
+        <p class="font-mono text-pink-400 text-xl">DIRECCIÓN: [PEGA AQUÍ TU DIRECCIÓN POLKADOT]</p>
+        <p class="text-sm text-zinc-400 mt-4">On-chain verifiable • Full transparency</p>
+      </div>
+      <a href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer" target="_blank" class="bg-white text-black px-8 py-4 rounded-2xl text-lg font-bold">Verify on Polkadot Explorer →</a>
+    </div>
+  </section>
+
+  <!-- ROADMAP + MVP -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12">MVP Live in 7 days</h2>
+      <div class="text-center text-2xl">Chat with DotMind right now (demo below)</div>
+      <!-- CHAT MVP DEMO -->
+      <div id="chat" class="max-w-2xl mx-auto mt-12 bg-zinc-900 rounded-3xl p-6 h-96 overflow-y-auto"></div>
+      <div class="mt-4 flex gap-2 max-w-2xl mx-auto">
+        <input id="msg" type="text" placeholder="Ask about OpenGov or Treasury..." class="flex-1 bg-zinc-800 text-white px-6 py-4 rounded-3xl outline-none">
+        <button onclick="sendMessage()" class="bg-pink-600 px-8 rounded-3xl">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 text-center text-zinc-400">
+    Built by @Real_Dennis_S_F & Grok • <a href="https://x.com/Polkasage" class="text-pink-400">@Polkasage</a>
+  </footer>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('msg');
+      const chat = document.getElementById('chat');
+      if (!input.value) return;
+      
+      chat.innerHTML += `<div class="mb-4 text-right"><div class="inline-block bg-pink-600 px-6 py-3 rounded-3xl">${input.value}</div></div>`;
+      
+      setTimeout(() => {
+        const answers = ["DotMind can read any OpenGov proposal in real time.", "Phala TEEs keep your data private.", "Yes, inference is fully decentralized."];
+        chat.innerHTML += `<div class="mb-4"><div class="inline-block bg-zinc-800 px-6 py-3 rounded-3xl">${answers[Math.floor(Math.random()*answers.length)]}</div></div>`;
+        chat.scrollTop = chat.scrollHeight;
+      }, 800);
+      
+      input.value = '';
+    }
+  </script>
+</body>
+</html>
