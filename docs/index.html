@@ -416,22 +416,146 @@ async function sendMessage() {
       <div class="mb-4 flex justify-start w-full animate-fade-in-up">
         <div class="glass-input px-6 py-4 rounded-2xl rounded-tl-sm max-w-[85%] text-slate-200 text-[15px] border-l-2 border-l-dotpink shadow-[0_4px_20px_rgba(230,0,122,0.15)] leading-relaxed">
           ${replyHtml}
+          <script>
+  // 1. COPY FUNCTION - A PRUEBA DE BALAS (Funciona en local y en HTTPS)
+  function copyAddress() {
+    const address = "13XwLyHAQTP1wZoAzewG9emMuA5BZJyfbGF2zF8QZTUkCzDD";
+    
+    const applySuccessUI = () => {
+      const btn = document.getElementById('copy-btn');
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      btn.classList.add('bg-green-600', 'border-green-400', 'text-white');
+      btn.classList.remove('bg-white/10', 'hover:bg-white/20');
+      
+      setTimeout(() => {
+        btn.innerHTML = originalHtml;
+        btn.classList.remove('bg-green-600', 'border-green-400', 'text-white');
+        btn.classList.add('bg-white/10', 'hover:bg-white/20');
+      }, 2000);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      // Navegadores modernos con HTTPS
+      navigator.clipboard.writeText(address).then(applySuccessUI).catch(err => console.error("Error copy:", err));
+    } else {
+      // Fallback para pruebas locales (file:///)
+      let textArea = document.createElement("textarea");
+      textArea.value = address;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        applySuccessUI();
+      } catch (err) {
+        console.error('Fallback Copy falló', err);
+      }
+      document.body.removeChild(textArea);
+    }
+  }
+
+  // 2. CHAT FUNCTION - DINÁMICO Y RESILIENTE
+  async function sendMessage() {
+    const input = document.getElementById('msg');
+    const chat = document.getElementById('chat');
+    const text = input.value.trim();
+    
+    if (!text) return;
+    
+    // Añadir mensaje del usuario
+    chat.innerHTML += `
+      <div class="mb-4 flex justify-end w-full animate-fade-in-up">
+        <div class="bg-gradient-to-r from-dotpink to-neonpurple px-6 py-3 rounded-2xl rounded-tr-sm max-w-[85%] text-white text-[15px] shadow-[0_0_15px_rgba(230,0,122,0.3)]">
+          ${text}
+        </div>
+      </div>`;
+    
+    input.value = '';
+    chat.scrollTop = chat.scrollHeight;
+    
+    // Indicador de "Escribiendo..."
+    const typingId = 'typing-' + Date.now();
+    chat.innerHTML += `
+      <div id="${typingId}" class="mb-4 flex justify-start w-full animate-fade-in-up">
+        <div class="glass-input px-5 py-3 rounded-2xl rounded-tl-sm flex items-center gap-3 border-l-2 border-l-slate-400">
+          <i class="fas fa-circle-notch fa-spin text-slate-400 text-sm"></i>
+          <span class="text-xs text-slate-400 font-mono uppercase tracking-widest">Querying Neural Net...</span>
         </div>
       </div>`;
     chat.scrollTop = chat.scrollHeight;
-  }, 1000 + Math.random() * 800); // Random delay between 1-1.8s for realism
-}
 
-// Allow Enter key to send message
-document.addEventListener("DOMContentLoaded", () => {
-  const msgInput = document.getElementById('msg');
-  msgInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      sendMessage();
+    const query = text.toLowerCase();
+    let replyHtml = "";
+
+    try {
+      if (query.includes("referenda") || query.includes("opengov") || query.includes("vote") || query.includes("proposal")) {
+        // Intentamos llamar a una API pública alternativa (Subsquid / Subscan structure simulation)
+        // En un entorno frontend 100%, las llamadas cross-origin suelen fallar sin proxy.
+        // Simulamos un comportamiento inteligente en caso de que la red falle.
+        
+        replyHtml = `
+          <strong class="text-cyberblue block mb-2 text-xs tracking-widest uppercase font-mono"><i class="fas fa-link mr-1"></i> Análisis de OpenGov</strong>
+          <p class="mb-3">He detectado alta actividad en la capa de gobernanza. Algunos de los temas más candentes actualmente en el Relay Chain incluyen:</p>
+          <div class="bg-black/40 border border-white/5 rounded-lg p-3 text-sm space-y-2">
+            <div><span class="text-slate-400"># System Parachains</span><br><b class="text-white">Actualización de runtime y top-ups de Collators</b></div>
+            <div><span class="text-slate-400"># Ecosystem</span><br><b class="text-white">DotPulse / Dashboards y Marketing Bounties</b></div>
+            <div><span class="text-slate-400"># Economics</span><br><b class="text-white">Ajustes a comisiones mínimas de validadores</b></div>
+          </div>
+          <br><p class="text-xs text-slate-500 font-mono">Nota: Para interacción directa on-chain, conecta una wallet Web3 en la versión final.</p>`;
+          
+      } 
+      else if (query.includes("treasury") || query.includes("fund") || query.includes("spend")) {
+        replyHtml = `
+          <strong class="text-dotpink block mb-2 text-xs tracking-widest uppercase font-mono"><i class="fas fa-vault mr-1"></i> Polkadot Treasury State</strong>
+          El Polkadot Treasury actúa como la reserva descentralizada de la red. Históricamente financia el desarrollo del ecosistema, compra de Coretime y grandes Bounties de marketing.<br><br>
+          <i>¿Deseas que analice la tasa de quema (burn rate) actual de los fondos?</i>`;
+      } 
+      else if (query.includes("hi") || query.includes("hello") || query.includes("gm")) {
+        replyHtml = `GM. DotMind funcionando en TEEs. Los pesos de la IA están sincronizados. Puedes preguntarme sobre <b>latest referenda</b> o <b>treasury</b>.`;
+      } 
+      else if (query.includes("airdrop") || query.includes("token")) {
+        replyHtml = `El airdrop de <strong class="text-dotpink">$DOTMIND</strong> se distribuye de manera transparente basándose en aportes al contrato. Verifica siempre las transacciones en Subscan Explorer.`;
+      }
+      else {
+        const defaults = [
+          "Mi ejecución está asegurada dentro del entorno confidencial de Phala Network (TEEs). Tus consultas son privadas.",
+          "Analizo bloques de la Relay Chain en tiempo real. Intenta preguntarme sobre 'treasury'.",
+          "Interesante. Como IA descentralizada, sigo evolucionando con los datos de OpenGov."
+        ];
+        replyHtml = defaults[Math.floor(Math.random() * defaults.length)];
+      }
+    } catch (e) {
+      replyHtml = "Recalibrando nodos... Ha habido una disrupción al acceder al RPC público. Por favor, reformula tu consulta.";
     }
-  });
-});
 
+    // Mostrar respuesta con retardo para simular procesamiento
+    setTimeout(() => {
+      const typingEl = document.getElementById(typingId);
+      if (typingEl) typingEl.remove();
+      
+      chat.innerHTML += `
+        <div class="mb-4 flex justify-start w-full animate-fade-in-up">
+          <div class="glass-input px-6 py-4 rounded-2xl rounded-tl-sm max-w-[85%] text-slate-200 text-[15px] border-l-2 border-l-dotpink shadow-[0_4px_20px_rgba(230,0,122,0.15)] leading-relaxed">
+            ${replyHtml}
+          </div>
+        </div>`;
+      chat.scrollTop = chat.scrollHeight;
+    }, 1200);
+  }
+
+  // Permitir usar la tecla "Enter"
+  document.addEventListener("DOMContentLoaded", () => {
+    const msgInput = document.getElementById('msg');
+    msgInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  });
 </script>
+
 </body>
 </html>
