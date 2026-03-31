@@ -130,7 +130,7 @@ overflow-x: hidden;
 
   <div class="relative inline-block mb-10 group">
     <div class="absolute inset-0 bg-gradient-to-r from-dotpink to-cyberblue rounded-full blur-2xl opacity-40 group-hover:opacity-60 transition duration-1000"></div>
-    <img src="icons/9ovyiu.jpg" alt="DotMind AI" class="relative w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full object-cover border-4 border-white/10 shadow-[0_0_50px_rgba(230,0,122,0.4)] animate-float z-10" onerror="this.src='[https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600&auto=format&fit=crop](https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600&auto=format&fit=crop)'">
+    <img src="icons/9ovyiu.jpg" alt="DotMind AI" class="relative w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full object-cover border-4 border-white/10 shadow-[0_0_50px_rgba(230,0,122,0.4)] animate-float z-10" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600&auto=format&fit=crop'">
   </div>
 
   <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
@@ -241,7 +241,7 @@ overflow-x: hidden;
         </div>
       </div>
 
-      <a href="[https://assethub-polkadot.subscan.io/account/13XwLyHAQTP1wZoAzewG9emMuA5BZJyfbGF2zF8QZTUkCzDD](https://assethub-polkadot.subscan.io/account/13XwLyHAQTP1wZoAzewG9emMuA5BZJyfbGF2zF8QZTUkCzDD)" target="_blank" class="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-2xl text-lg font-bold hover:bg-slate-200 transition-colors shadow-lg">
+      <a href="https://assethub-polkadot.subscan.io/account/13XwLyHAQTP1wZoAzewG9emMuA5BZJyfbGF2zF8QZTUkCzDD" target="_blank" class="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-2xl text-lg font-bold hover:bg-slate-200 transition-colors shadow-lg">
         Verify on Subscan Explorer <i class="fas fa-external-link-alt text-sm"></i>
       </a>
     </div>
@@ -318,115 +318,115 @@ const originalHtml = btn.innerHTML;
 btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
 btn.classList.add('bg-green-600', 'border-green-400', 'text-white');
 btn.classList.remove('bg-white/10', 'hover:bg-white/20');
-  setTimeout(() =&gt; {
+  setTimeout(() => {
     btn.innerHTML = originalHtml;
-    btn.classList.remove(&#39;bg-green-600&#39;, &#39;border-green-400&#39;, &#39;text-white&#39;);
-    btn.classList.add(&#39;bg-white/10&#39;, &#39;hover:bg-white/20&#39;);
+    btn.classList.remove('bg-green-600', 'border-green-400', 'text-white');
+    btn.classList.add('bg-white/10', 'hover:bg-white/20');
   }, 2000);
 }
 
 // Chat function
 async function sendMessage() {
-  const input = document.getElementById(&#39;msg&#39;);
-  const chat = document.getElementById(&#39;chat&#39;);
+  const input = document.getElementById('msg');
+  const chat = document.getElementById('chat');
   const text = input.value.trim();
   
   if (!text) return;
   
   // 1. Add User Message
   chat.innerHTML += `
-    &lt;div class=&quot;mb-4 flex justify-end w-full animate-fade-in-up&quot;&gt;
-      &lt;div class=&quot;bg-gradient-to-r from-dotpink to-neonpurple px-6 py-3 rounded-2xl rounded-tr-sm max-w-[85%] text-white text-[15px] shadow-[0_0_15px_rgba(230,0,122,0.3)]&quot;&gt;
+    <div class="mb-4 flex justify-end w-full animate-fade-in-up">
+      <div class="bg-gradient-to-r from-dotpink to-neonpurple px-6 py-3 rounded-2xl rounded-tr-sm max-w-[85%] text-white text-[15px] shadow-[0_0_15px_rgba(230,0,122,0.3)]">
         ${text}
-      &lt;/div&gt;
-    &lt;/div&gt;`;
+      </div>
+    </div>`;
   
-  input.value = &#39;&#39;;
+  input.value = '';
   chat.scrollTop = chat.scrollHeight;
   
   // 2. Add Typing Indicator
-  const typingId = &#39;typing-&#39; + Date.now();
+  const typingId = 'typing-' + Date.now();
   chat.innerHTML += `
-    &lt;div id=&quot;${typingId}&quot; class=&quot;mb-4 flex justify-start w-full animate-fade-in-up&quot;&gt;
-      &lt;div class=&quot;glass-input px-5 py-3 rounded-2xl rounded-tl-sm flex items-center gap-3 border-l-2 border-l-slate-400&quot;&gt;
-        &lt;i class=&quot;fas fa-circle-notch fa-spin text-slate-400 text-sm&quot;&gt;&lt;/i&gt;
-        &lt;span class=&quot;text-xs text-slate-400 font-mono uppercase tracking-widest&quot;&gt;Querying Neural Net...&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;`;
+    <div id="${typingId}" class="mb-4 flex justify-start w-full animate-fade-in-up">
+      <div class="glass-input px-5 py-3 rounded-2xl rounded-tl-sm flex items-center gap-3 border-l-2 border-l-slate-400">
+        <i class="fas fa-circle-notch fa-spin text-slate-400 text-sm"></i>
+        <span class="text-xs text-slate-400 font-mono uppercase tracking-widest">Querying Neural Net...</span>
+      </div>
+    </div>`;
   chat.scrollTop = chat.scrollHeight;
 
-  // 3. Process Logic &amp; Fetch Data
+  // 3. Process Logic & Fetch Data
   const query = text.toLowerCase();
-  let replyHtml = &quot;&quot;;
+  let replyHtml = "";
 
   try {
-    if (query.includes(&quot;referenda&quot;) || query.includes(&quot;opengov&quot;) || query.includes(&quot;vote&quot;) || query.includes(&quot;proposal&quot;)) {
+    if (query.includes("referenda") || query.includes("opengov") || query.includes("vote") || query.includes("proposal")) {
       // Attempt real API fetch from Polkassembly
-      const res = await fetch(&quot;[https://api.polkassembly.io/api/v1/listing/on-chain-posts?proposalType=referendums_v2&amp;listingLimit=1&amp;network=polkadot](https://api.polkassembly.io/api/v1/listing/on-chain-posts?proposalType=referendums_v2&amp;listingLimit=1&amp;network=polkadot)&quot;);
+      const res = await fetch("https://api.polkassembly.io/api/v1/listing/on-chain-posts?proposalType=referendums_v2&listingLimit=1&network=polkadot");
       const data = await res.json();
       
-      if (data &amp;&amp; data.posts &amp;&amp; data.posts.length &gt; 0) {
+      if (data && data.posts && data.posts.length > 0) {
         const ref = data.posts[0];
-        const statusColor = ref.status === &#39;Confirmed&#39; || ref.status === &#39;Executed&#39; ? &#39;text-green-400&#39; : &#39;text-neonpurple&#39;;
+        const statusColor = ref.status === 'Confirmed' || ref.status === 'Executed' ? 'text-green-400' : 'text-neonpurple';
         replyHtml = `
-          &lt;strong class=&quot;text-cyberblue block mb-2 text-xs tracking-widest uppercase font-mono&quot;&gt;&lt;i class=&quot;fas fa-link mr-1&quot;&gt;&lt;/i&gt; Live OpenGov Intel&lt;/strong&gt;
-          I&#39;ve accessed the latest Polkadot OpenGov data:<br><br>
-          &lt;div class=&quot;bg-black/40 border border-white/5 rounded-lg p-3 text-sm&quot;&gt;
-            &lt;span class=&quot;text-slate-400&quot;&gt;Referendum #${ref.post_id}&lt;/span&gt;<br>
-            &lt;b class=&quot;text-white&quot;&gt;&quot;${ref.title || &#39;On-Chain Proposal&#39;}&quot;&lt;/b&gt;<br>
-            Status: &lt;span class=&quot;${statusColor} font-semibold&quot;&gt;${ref.status}&lt;/span&gt;
-          &lt;/div&gt;
-          <br>Would you like an AI summary of this proposal&#39;s code changes?`;
+          <strong class="text-cyberblue block mb-2 text-xs tracking-widest uppercase font-mono"><i class="fas fa-link mr-1"></i> Live OpenGov Intel</strong>
+          I've accessed the latest Polkadot OpenGov data:<br><br>
+          <div class="bg-black/40 border border-white/5 rounded-lg p-3 text-sm">
+            <span class="text-slate-400">Referendum #${ref.post_id}</span><br>
+            <b class="text-white">"${ref.title || 'On-Chain Proposal'}"</b><br>
+            Status: <span class="\( {statusColor} font-semibold"> \){ref.status}</span>
+          </div>
+          <br>Would you like an AI summary of this proposal's code changes?`;
       } else {
-         replyHtml = &quot;I am connected to OpenGov, but the current RPC endpoint is experiencing latency. Please try querying again in a moment.&quot;;
+         replyHtml = "I am connected to OpenGov, but the current RPC endpoint is experiencing latency. Please try querying again in a moment.";
       }
     } 
-    else if (query.includes(&quot;treasury&quot;) || query.includes(&quot;fund&quot;) || query.includes(&quot;spend&quot;)) {
+    else if (query.includes("treasury") || query.includes("fund") || query.includes("spend")) {
       replyHtml = `
-        &lt;strong class=&quot;text-dotpink block mb-2 text-xs tracking-widest uppercase font-mono&quot;&gt;&lt;i class=&quot;fas fa-vault mr-1&quot;&gt;&lt;/i&gt; Polkadot Treasury State&lt;/strong&gt;
-        The Polkadot Treasury acts as the decentralized reserve for the network. It currently holds approximately &lt;b&gt;~39 Million DOT&lt;/b&gt;.<br><br>
-        Recent capital outflows are heavily directed toward &lt;i&gt;Coretime purchases, Marketing Bounties, and Ecosystem Grants&lt;/i&gt; via OpenGov.`;
+        <strong class="text-dotpink block mb-2 text-xs tracking-widest uppercase font-mono"><i class="fas fa-vault mr-1"></i> Polkadot Treasury State</strong>
+        The Polkadot Treasury acts as the decentralized reserve for the network. It currently holds approximately <b>\~39 Million DOT</b>.<br><br>
+        Recent capital outflows are heavily directed toward <i>Coretime purchases, Marketing Bounties, and Ecosystem Grants</i> via OpenGov.`;
     } 
-    else if (query.includes(&quot;hi&quot;) || query.includes(&quot;hello&quot;) || query.includes(&quot;gm&quot;)) {
-      replyHtml = `GM. I am functioning optimally. All decentralized weights are synced via IPFS. Ask me about the network&#39;s state, treasury, or governance.`;
+    else if (query.includes("hi") || query.includes("hello") || query.includes("gm")) {
+      replyHtml = `GM. I am functioning optimally. All decentralized weights are synced via IPFS. Ask me about the network's state, treasury, or governance.`;
     } 
-    else if (query.includes(&quot;airdrop&quot;) || query.includes(&quot;token&quot;)) {
-      replyHtml = `The &lt;strong class=&quot;text-dotpink&quot;&gt;$DOTMIND&lt;/strong&gt; airdrop is mathematically distributed based on on-chain contributions to the Treasury address above. Have you verified your transaction on Subscan?`;
+    else if (query.includes("airdrop") || query.includes("token")) {
+      replyHtml = `The <strong class="text-dotpink">$DOTMIND</strong> airdrop is mathematically distributed based on on-chain contributions to the Treasury address above. Have you verified your transaction on Subscan?`;
     }
     else {
       const defaults = [
-        &quot;My execution runs securely inside Phala Network&#39;s Trusted Execution Environments (TEEs), ensuring absolute privacy for your queries.&quot;,
-        &quot;I&#39;m continuously ingesting Relay Chain blocks. Soon, I will be able to autonomously execute DOT staking strategies for you.&quot;,
-        &quot;Interesting query. Since I am a decentralized model, my parameters are completely open-source and community-governed.&quot;,
-        &quot;I cross-reference data across Polkadot&#39;s parachains. Try asking me about &#39;treasury&#39; or &#39;latest referenda&#39;.&quot;
+        "My execution runs securely inside Phala Network's Trusted Execution Environments (TEEs), ensuring absolute privacy for your queries.",
+        "I'm continuously ingesting Relay Chain blocks. Soon, I will be able to autonomously execute DOT staking strategies for you.",
+        "Interesting query. Since I am a decentralized model, my parameters are completely open-source and community-governed.",
+        "I cross-reference data across Polkadot's parachains. Try asking me about 'treasury' or 'latest referenda'."
       ];
       replyHtml = defaults[Math.floor(Math.random() * defaults.length)];
     }
   } catch (e) {
     // Fallback if API blocks or fails
-    replyHtml = &quot;I encountered a cryptographic disruption while fetching the live on-chain state. My neural pathways are recalibrating. Please try asking again.&quot;;
+    replyHtml = "I encountered a cryptographic disruption while fetching the live on-chain state. My neural pathways are recalibrating. Please try asking again.";
   }
 
   // 4. Show Response
-  setTimeout(() =&gt; {
+  setTimeout(() => {
     const typingEl = document.getElementById(typingId);
     if (typingEl) typingEl.remove();
     
     chat.innerHTML += `
-      &lt;div class=&quot;mb-4 flex justify-start w-full animate-fade-in-up&quot;&gt;
-        &lt;div class=&quot;glass-input px-6 py-4 rounded-2xl rounded-tl-sm max-w-[85%] text-slate-200 text-[15px] border-l-2 border-l-dotpink shadow-[0_4px_20px_rgba(230,0,122,0.15)] leading-relaxed&quot;&gt;
+      <div class="mb-4 flex justify-start w-full animate-fade-in-up">
+        <div class="glass-input px-6 py-4 rounded-2xl rounded-tl-sm max-w-[85%] text-slate-200 text-[15px] border-l-2 border-l-dotpink shadow-[0_4px_20px_rgba(230,0,122,0.15)] leading-relaxed">
           ${replyHtml}
-        &lt;/div&gt;
-      &lt;/div&gt;`;
+        </div>
+      </div>`;
     chat.scrollTop = chat.scrollHeight;
   }, 1000 + Math.random() * 800); // Random delay between 1-1.8s for realism
 }
 
 // Allow Enter key to send message
-document.addEventListener(&quot;DOMContentLoaded&quot;, () =&gt; {
-  const msgInput = document.getElementById(&#39;msg&#39;);
-  msgInput.addEventListener(&#39;keypress&#39;, function (e) {
-    if (e.key === &#39;Enter&#39;) {
+document.addEventListener("DOMContentLoaded", () => {
+  const msgInput = document.getElementById('msg');
+  msgInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
       sendMessage();
     }
   });
